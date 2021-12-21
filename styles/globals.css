@@ -1,4 +1,4 @@
-html,
+/* html,
 body {
   padding: 0;
   margin: 0;
@@ -13,4 +13,28 @@ a {
 
 * {
   box-sizing: border-box;
+} */
+
+.sticky {
+  height: 90vh;
+  position: sticky;
+  top: 0;
+}
+
+.p2 {
+  padding: 20px;
+}
+
+.p3{
+  padding: 30px;
+}
+
+.dn{
+  display: none;
+}
+
+.img-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
