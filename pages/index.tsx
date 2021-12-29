@@ -4,11 +4,13 @@ import { MeshViewer } from '../components/MeshViewer'
 import { createUuid } from '../components/uuid'
 import { ImageTileList, ImageData } from '../components/ImageTileList'
 import { generateMeshFromImageAsync } from '../components/request'
+import { useWindowSize } from '../components/useWindowSize'
 
 const Home: NextPage = () => {
 
     const inputRef = useRef<HTMLInputElement>(null);
     const [images, setImages] = useState<ImageData[]>([]);
+    const { height, width } = useWindowSize();
 
     const [dishModel, setDishModel] = useState('resource/cube.obj');
     const [plateModel, setPlateModel] = useState('resource/cube.obj');
@@ -48,29 +50,27 @@ const Home: NextPage = () => {
     };
 
     return (
-        <>
-            <div className="columns back-color" id="app">
-                <div className="column p3">
-                    <div className="p2">
-                        <label className="button is-link mr2">
-                            Select Image
-                            <input className="dn" type="file" ref={inputRef} accept=".png, .jpg, .jpeg" onChange={() => readImageCallBack()} />
-                        </label>
-                    </div>
-
-                    <div id="preview">
-                        <ImageTileList images={images} request={requestGenerateMeshCallBack} ></ImageTileList>
-                    </div>
+        <div className="columns back-color">
+            <div className="column p3">
+                <div className="p2">
+                    <label className="button is-link mr2">
+                        Select Image
+                        <input className="dn" type="file" ref={inputRef} accept=".png, .jpg, .jpeg" onChange={() => readImageCallBack()} />
+                    </label>
                 </div>
 
-                <div className="column sticky">
-                    <div className="p3">
-                        <MeshViewer title='dish' meshUrl={dishModel}></MeshViewer>
-                        <MeshViewer title='plate' meshUrl={plateModel}></MeshViewer>
-                    </div>
+                <div id="preview">
+                    <ImageTileList images={images} request={requestGenerateMeshCallBack} ></ImageTileList>
                 </div>
             </div>
-        </>
+
+            <div className="column sticky">
+                <div className="p3">
+                    <MeshViewer title='dish' meshUrl={dishModel} width={width / 2.5} height={height / 2.5}></MeshViewer>
+                    <MeshViewer title='plate' meshUrl={plateModel} width={width / 2.5} height={height / 2.5}></MeshViewer>
+                </div>
+            </div>
+        </div>
     )
 }
 
