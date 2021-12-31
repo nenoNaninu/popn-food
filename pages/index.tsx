@@ -4,19 +4,22 @@ import { MeshViewer } from '../components/MeshViewer'
 import { fetchResultJsonListAsync, ResponseResultJsonPath } from '../components/request'
 import { useWindowSize } from '../components/useWindowSize'
 import Link from 'next/link';
+import { useRouter } from 'next/router'
+import { resourceToUrl } from '../components/resourceToUrl'
 
 const Home: NextPage = () => {
-
     const { height, width } = useWindowSize();
     const [resultList, setResultList] = useState<ResponseResultJsonPath[]>([])
+    const router = useRouter();
 
     useEffect(() => {
         const fetch = async () => {
-            const list = await fetchResultJsonListAsync("resource/resultIndex.json");
+            const list = await fetchResultJsonListAsync(resourceToUrl(router.basePath, "/resource/resultIndex.json"));
             setResultList(list);
         }
         fetch();
-    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const listView = resultList.map(x => (
         <Link key={x.jsonUrl} href={{ pathname: '/result', query: { jsonUrl: x.jsonUrl, key: x.key } }} passHref>
@@ -36,8 +39,8 @@ const Home: NextPage = () => {
 
             <div className="column sticky">
                 <div className="p-5">
-                    <MeshViewer title='dish' meshUrl='resource/cube.obj' width={width / 2.5} height={height / 2.5}></MeshViewer>
-                    <MeshViewer title='plate' meshUrl='resource/cube.obj' width={width / 2.5} height={height / 2.5}></MeshViewer>
+                    <MeshViewer title='dish' meshUrl={resourceToUrl(router.basePath, '/resource/cube.obj')} width={width / 2.5} height={height / 2.5}></MeshViewer>
+                    <MeshViewer title='plate' meshUrl={resourceToUrl(router.basePath, '/resource/cube.obj')} width={width / 2.5} height={height / 2.5}></MeshViewer>
                 </div>
             </div>
         </div >

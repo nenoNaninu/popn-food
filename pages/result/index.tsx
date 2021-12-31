@@ -6,18 +6,17 @@ import { ImageTileList, ImageData } from '../../components/ImageTileList'
 import { useWindowSize } from '../../components/useWindowSize'
 import { useRouter } from 'next/router'
 import { fetchImageAndMeshList, ImageAndMesh } from '../../components/request'
-
+import { resourceToUrl } from '../../components/resourceToUrl'
 
 const ResultViewer: NextPage = () => {
 
-    const inputRef = useRef<HTMLInputElement>(null);
     const [imageAndMeshMap, setImageAndMeshMap] = useState<Map<string, ImageAndMesh>>();
     const { height, width } = useWindowSize();
     const router = useRouter();
     const { jsonUrl, key } = router.query;
 
-    const [dishModel, setDishModel] = useState('resource/cube.obj');
-    const [plateModel, setPlateModel] = useState('resource/cube.obj');
+    const [dishModel, setDishModel] = useState(resourceToUrl(router.basePath, '/resource/cube.obj'));
+    const [plateModel, setPlateModel] = useState(resourceToUrl(router.basePath, '/resource/cube.obj'));
 
     useEffect(() => {
         const fetch = async () => {
