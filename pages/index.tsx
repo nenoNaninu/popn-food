@@ -19,8 +19,7 @@ const Home: NextPage = () => {
             setResultList(list);
         }
         fetch();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    })
 
     const listView = resultList.map(x => (
         <Link key={x.jsonUrl} href={{ pathname: '/result', query: { jsonUrl: x.jsonUrl, key: x.key } }} passHref>
