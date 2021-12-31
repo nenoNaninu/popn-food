@@ -8,6 +8,7 @@ import { useRouter } from 'next/router'
 import { resourceToUrl } from '../components/resourceToUrl'
 
 const Home: NextPage = () => {
+
     const { height, width } = useWindowSize();
     const [resultList, setResultList] = useState<ResponseResultJsonPath[]>([])
     const router = useRouter();
@@ -18,7 +19,7 @@ const Home: NextPage = () => {
             setResultList(list);
         }
         fetch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const listView = resultList.map(x => (
@@ -39,8 +40,8 @@ const Home: NextPage = () => {
 
             <div className="column sticky">
                 <div className="p-5">
-                    <MeshViewer title='dish' meshUrl={resourceToUrl(router.basePath, '/resource/cube.obj')} width={width / 2.5} height={height / 2.5}></MeshViewer>
-                    <MeshViewer title='plate' meshUrl={resourceToUrl(router.basePath, '/resource/cube.obj')} width={width / 2.5} height={height / 2.5}></MeshViewer>
+                    <MeshViewer title='Mesh' meshUrl={resourceToUrl(router.basePath, '/resource/cube.obj')} width={width / 2.5} height={height / 2.5}></MeshViewer>
+                    <MeshViewer title='Mesh' meshUrl={resourceToUrl(router.basePath, '/resource/cube.obj')} width={width / 2.5} height={height / 2.5}></MeshViewer>
                 </div>
             </div>
         </div >

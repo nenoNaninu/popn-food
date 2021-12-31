@@ -63,8 +63,7 @@ const ResultViewer: NextPage = () => {
 
     return (
         <div className="columns back-color">
-            <div className="column p3">
-
+            <div className="column p-3">
                 <div id="preview">
                     <div className="p-2 mx-6 mt-5">
                         <h1 className='title'>
@@ -77,8 +76,8 @@ const ResultViewer: NextPage = () => {
 
             <div className="column sticky">
                 <div className="p-3">
-                    <MeshViewer title='dish' meshUrl={dishModel} width={width / 2.5} height={height / 2.5}></MeshViewer>
-                    <MeshViewer title='plate' meshUrl={plateModel} width={width / 2.5} height={height / 2.5}></MeshViewer>
+                    <MeshViewer title='Dish' meshUrl={dishModel} width={width / 2.5} height={height / 2.5}></MeshViewer>
+                    <MeshViewer title='Plate' meshUrl={plateModel} width={width / 2.5} height={height / 2.5}></MeshViewer>
                 </div>
             </div>
         </div>
