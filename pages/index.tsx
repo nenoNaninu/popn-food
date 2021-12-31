@@ -7,7 +7,6 @@ import Link from 'next/link';
 
 const Home: NextPage = () => {
 
-    const inputRef = useRef<HTMLInputElement>(null);
     const { height, width } = useWindowSize();
     const [resultList, setResultList] = useState<ResponseResultJsonPath[]>([])
 
@@ -17,7 +16,7 @@ const Home: NextPage = () => {
             setResultList(list);
         }
         fetch();
-    }, [])
+    })
 
     const listView = resultList.map(x => (
         <Link key={x.jsonUrl} href={{ pathname: '/result', query: { jsonUrl: x.jsonUrl, key: x.key } }} passHref>
