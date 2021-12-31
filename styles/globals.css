@@ -14,6 +14,11 @@
   align-items: center;
 }
 
+.img-container > img{
+  width: 250px;
+  height: 250px;
+}
+
 .back-color{
   background-color: #f5f7fa;
 }
