@@ -1,76 +1,47 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import type { NextPage } from 'next'
 import { MeshViewer } from '../components/MeshViewer'
-import { createUuid } from '../components/uuid'
-import { ImageTileList, ImageData } from '../components/ImageTileList'
-import { generateMeshFromImageAsync } from '../components/request'
+import { fetchResultJsonListAsync, ResponseResultJsonPath } from '../components/request'
 import { useWindowSize } from '../components/useWindowSize'
+import Link from 'next/link';
 
 const Home: NextPage = () => {
 
     const inputRef = useRef<HTMLInputElement>(null);
-    const [images, setImages] = useState<ImageData[]>([]);
     const { height, width } = useWindowSize();
+    const [resultList, setResultList] = useState<ResponseResultJsonPath[]>([])
 
-    const [dishModel, setDishModel] = useState('resource/cube.obj');
-    const [plateModel, setPlateModel] = useState('resource/cube.obj');
-
-    const readImageCallBack = () => {
-        console.log("call callback!!!!!!!!!!!!!!!");
-
-        if (!inputRef.current || !inputRef.current.files) {
-            console.log("inputRef.current is null or inputRef.current.files is null");
-            return;
+    useEffect(() => {
+        const fetch = async () => {
+            const list = await fetchResultJsonListAsync("resource/resultIndex.json");
+            setResultList(list);
         }
+        fetch();
+    }, [])
 
-        const files = inputRef.current.files;
-
-        for (var i = 0; i < files.length; i++) {
-            const reader = new FileReader();
-
-            reader.onload = e => {
-                const base64ImageUrl = e.target!.result as string; // base64 url
-                const guid = createUuid();
-
-                const data: ImageData = { imageBase64: base64ImageUrl, guid: guid };
-
-                setImages(imageArray => [data, ...imageArray]);
-            }
-
-            // The file will be base64 encoded.
-            reader.readAsDataURL(files[i]);
-        }
-    };
-
-    const requestGenerateMeshCallBack = async (imageBase64: string, guid: string): Promise<void> => {
-        const response = await generateMeshFromImageAsync('http://localhost:8888/generate', imageBase64, guid);
-        console.log(response)
-        setDishModel(response.dishUrl);
-        setPlateModel(response.plateUrl);
-    };
+    const listView = resultList.map(x => (
+        <Link key={x.jsonUrl} href={{ pathname: '/result', query: { jsonUrl: x.jsonUrl, key: x.key } }} passHref>
+            <a className='box'>
+                {x.key}
+            </a>
+        </Link>
+    ));
 
     return (
         <div className="columns back-color">
-            <div className="column p3">
-                <div className="p2">
-                    <label className="button is-link mr2">
-                        Select Image
-                        <input className="dn" type="file" ref={inputRef} accept=".png, .jpg, .jpeg" onChange={() => readImageCallBack()} />
-                    </label>
-                </div>
-
-                <div id="preview">
-                    <ImageTileList images={images} request={requestGenerateMeshCallBack} ></ImageTileList>
+            <div className="column">
+                <div className="p-2 mx-6 mt-5">
+                    {listView}
                 </div>
             </div>
 
             <div className="column sticky">
-                <div className="p3">
-                    <MeshViewer title='dish' meshUrl={dishModel} width={width / 2.5} height={height / 2.5}></MeshViewer>
-                    <MeshViewer title='plate' meshUrl={plateModel} width={width / 2.5} height={height / 2.5}></MeshViewer>
+                <div className="p-5">
+                    <MeshViewer title='dish' meshUrl='resource/cube.obj' width={width / 2.5} height={height / 2.5}></MeshViewer>
+                    <MeshViewer title='plate' meshUrl='resource/cube.obj' width={width / 2.5} height={height / 2.5}></MeshViewer>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

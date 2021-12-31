@@ -82,12 +82,12 @@ export const MeshViewer: FC<Props> = (props) => {
             return;
         }
 
-        const loader = new OBJLoader();
-        const scene = sceneRef.current;
-
-        if (!scene) {
+        if (!sceneRef.current) {
             return;
         }
+
+        const scene = sceneRef.current;
+        const loader = new OBJLoader();
 
         if (loadedModelRef.current) {
             scene.remove(loadedModelRef.current);

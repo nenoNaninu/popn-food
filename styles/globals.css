@@ -1,32 +1,7 @@
-/* html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-} */
-
 .sticky {
   height: 90vh;
   position: sticky;
   top: 0;
-}
-
-.p2 {
-  padding: 20px;
-}
-
-.p3{
-  padding: 30px;
 }
 
 .dn{
@@ -37,10 +12,6 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.mr2{
-  margin: 0px 20px 0px 0px;
 }
 
 .back-color{

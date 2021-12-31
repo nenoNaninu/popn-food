@@ -1,0 +1,18 @@
+[
+    {
+        "key": "bce_b72_w20_dumpy",
+        "jsonUrl": "hogehoge.json"
+    },
+    {
+        "key": "l1_b72_w0_bg_dumpy",
+        "jsonUrl": "hogehoge.json"
+    },
+    {
+        "key": "nl_l1_b72_w100_dumpy",
+        "jsonUrl": "hogehoge.json"
+    },
+    {
+        "key": "food_mesh_sample_localhost",
+        "jsonUrl": "http://localhost:3000/resource/food_mesh.json"
+    }
+]
