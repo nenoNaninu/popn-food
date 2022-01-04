@@ -22,7 +22,7 @@ const Home: NextPage = () => {
     })
 
     const listView = resultList.map(x => (
-        <Link key={x.jsonUrl} href={{ pathname: '/result', query: { jsonUrl: x.jsonUrl, key: x.key } }} passHref>
+        <Link key={x.jsonUrl} href={{ pathname: '/result/', query: { jsonUrl: x.jsonUrl, key: x.key } }} passHref>
             <a className='box'>
                 {x.key}
             </a>

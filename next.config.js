@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
     reactStrictMode: true,
-    // basePath: '/mesh-viewer/'
+    trailingSlash: true,
+    // basePath: '/mesh-viewer'
 }
