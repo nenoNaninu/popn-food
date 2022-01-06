@@ -1,11 +1,11 @@
-import { useRef, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import type { NextPage } from 'next'
 import { MeshViewer } from '../components/MeshViewer'
 import { fetchResultJsonListAsync, ResponseResultJsonPath } from '../components/request'
 import { useWindowSize } from '../components/useWindowSize'
 import Link from 'next/link';
-import { useRouter } from 'next/router'
 import { resourceToUrl } from '../components/resourceToUrl'
+import { useRouter } from 'next/router'
 
 const Home: NextPage = () => {
 
@@ -15,11 +15,11 @@ const Home: NextPage = () => {
 
     useEffect(() => {
         const fetch = async () => {
-            const list = await fetchResultJsonListAsync(resourceToUrl(router.basePath, "/resource/resultIndex.json"));
+            const list = await fetchResultJsonListAsync("resource/resultIndex.json");
             setResultList(list);
         }
         fetch();
-    })
+    }, [])
 
     const listView = resultList.map(x => (
         <Link key={x.jsonUrl} href={{ pathname: '/result/', query: { jsonUrl: x.jsonUrl, key: x.key } }} passHref>
