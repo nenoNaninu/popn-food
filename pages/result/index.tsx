@@ -15,8 +15,8 @@ const ResultViewer: NextPage = () => {
     const router = useRouter();
     const { jsonUrl, key } = router.query;
 
-    const [dishModel, setDishModel] = useState(resourceToUrl(router.basePath, '/resource/cube.obj'));
-    const [plateModel, setPlateModel] = useState(resourceToUrl(router.basePath, '/resource/cube.obj'));
+    const [dishModel, setDishModel] = useState(resourceToUrl('/resource/cube.obj'));
+    const [plateModel, setPlateModel] = useState(resourceToUrl('/resource/cube.obj'));
 
     useEffect(() => {
         const fetch = async () => {

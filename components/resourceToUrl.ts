@@ -1,6 +1,5 @@
-import getConfig from 'next/config'
-import { useRouter } from 'next/router'
+import router from 'next/router'
 
-export function resourceToUrl(basePath: string, filename: string): string {
-    return basePath + filename
+export function resourceToUrl(filename: string): string {
+    return process.browser ? router.basePath + filename : filename;
 }

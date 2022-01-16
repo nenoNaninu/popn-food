@@ -39,8 +39,8 @@ const Home: NextPage = () => {
 
             <div className="column sticky">
                 <div className="p-5">
-                    <MeshViewer title='Mesh' meshUrl={resourceToUrl(router.basePath, '/resource/cube.obj')} width={width / 2.5} height={height / 2.5}></MeshViewer>
-                    <MeshViewer title='Mesh' meshUrl={resourceToUrl(router.basePath, '/resource/cube.obj')} width={width / 2.5} height={height / 2.5}></MeshViewer>
+                    <MeshViewer title='Mesh' meshUrl={resourceToUrl('/resource/cube.obj')} width={width / 2.5} height={height / 2.5}></MeshViewer>
+                    <MeshViewer title='Mesh' meshUrl={resourceToUrl('/resource/cube.obj')} width={width / 2.5} height={height / 2.5}></MeshViewer>
                 </div>
             </div>
         </div >
