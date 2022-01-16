@@ -5,7 +5,6 @@ import { createUuid } from '../../components/uuid'
 import { Base64ImageTileList, ImageData } from '../../components/Base64ImageTileList'
 import { generateMeshFromImageAsync } from '../../components/request'
 import { useWindowSize } from '../../components/useWindowSize'
-import { useRouter } from 'next/router'
 import { resourceToUrl } from '../../components/resourceToUrl'
 
 const RealtimeViewer: NextPage = () => {
@@ -13,10 +12,9 @@ const RealtimeViewer: NextPage = () => {
     const inputRef = useRef<HTMLInputElement>(null);
     const [images, setImages] = useState<ImageData[]>([]);
     const { height, width } = useWindowSize();
-    const router = useRouter();
 
-    const [dishModel, setDishModel] = useState(resourceToUrl(router.basePath, '/resource/cube.obj'));
-    const [plateModel, setPlateModel] = useState(resourceToUrl(router.basePath, '/resource/cube.obj'));
+    const [dishModel, setDishModel] = useState(resourceToUrl('/resource/cube.obj'));
+    const [plateModel, setPlateModel] = useState(resourceToUrl('/resource/cube.obj'));
 
     const readImageCallBack = () => {
         console.log("call callback!!!!!!!!!!!!!!!");
