@@ -17,7 +17,7 @@ export const MeshViewer: FC<Props> = (props) => {
 
     const sceneRef = useRef<three.Scene | null>(null);
     const loadedModelRef = useRef<three.Group | null>(null);
-    const convasRef = useRef<HTMLCanvasElement>(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
     const rendererRef = useRef<three.WebGLRenderer | null>(null);
     const cameraRef = useRef<three.PerspectiveCamera | null>(null);
     const controlsRef = useRef<OrbitControls | null>(null);
@@ -27,13 +27,13 @@ export const MeshViewer: FC<Props> = (props) => {
         const width = props.width;
         const height = props.height;
 
-        if (!convasRef.current) {
+        if (!canvasRef.current) {
             console.log("canvas_elem is null")
             return;
         }
 
         rendererRef.current ??= new three.WebGLRenderer({
-            canvas: convasRef.current
+            canvas: canvasRef.current
         });
 
         const renderer = rendererRef.current;
@@ -55,7 +55,7 @@ export const MeshViewer: FC<Props> = (props) => {
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
 
-        controlsRef.current ??= new OrbitControls(camera, convasRef.current);
+        controlsRef.current ??= new OrbitControls(camera, canvasRef.current);
         controlsRef.current.update();
 
         if (!isLoopingRef.current) {
@@ -114,7 +114,7 @@ export const MeshViewer: FC<Props> = (props) => {
     return (
         <>
             <h1 className="subtitle">{props.title} {progres}</h1>
-            <canvas ref={convasRef}></canvas>
+            <canvas ref={canvasRef}></canvas>
         </>
     );
 }
