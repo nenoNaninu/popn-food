@@ -8,6 +8,7 @@ export type Props = {
     title: string;
     width: number;
     height: number;
+    pinToNormalView?: boolean;
 };
 
 export const MeshViewerForPhoto: FC<Props> = (props) => {
@@ -52,8 +53,6 @@ export const MeshViewerForPhoto: FC<Props> = (props) => {
 
         sceneRef.current ??= new three.Scene();
         const scene = sceneRef.current;
-
-        scene.overrideMaterial ??= new three.MeshNormalMaterial();
 
         if (!cameraRef.current) {
             cameraRef.current = new three.PerspectiveCamera(45, width / height);
@@ -106,7 +105,21 @@ export const MeshViewerForPhoto: FC<Props> = (props) => {
 
         loader.load(props.meshUrl,
             mesh => {
-                loadedModelRef.current = mesh
+                loadedModelRef.current = mesh;
+
+                mesh.traverse(x => {
+                    if (x instanceof three.Mesh) {
+                        if (x.isMesh) {
+
+                            const material = x.material.vertexColors && !props.pinToNormalView
+                                ? new three.MeshBasicMaterial({ vertexColors: true })
+                                : new three.MeshNormalMaterial();
+
+                            x.material = material;
+                        }
+                    }
+                });
+
                 scene.add(mesh);
             },
             e => {
@@ -119,7 +132,7 @@ export const MeshViewerForPhoto: FC<Props> = (props) => {
                 console.log(err)
             }
         )
-    }, [props.meshUrl, isStarted]);
+    }, [props.meshUrl, props.pinToNormalView, isStarted]);
 
     return (
         <>

@@ -18,6 +18,8 @@ const ResultViewer: NextPage = () => {
     const [dishModel, setDishModel] = useState(resourceToUrl('/resource/cube.obj'));
     const [plateModel, setPlateModel] = useState(resourceToUrl('/resource/cube.obj'));
 
+    const [isNormalView, setNormalView] = useState(false);
+
     useEffect(() => {
         const fetch = async () => {
             if (jsonUrl) {
@@ -71,6 +73,7 @@ const ResultViewer: NextPage = () => {
                         <h1 className='title'>
                             {key}
                         </h1>
+                        <button className={isNormalView ? "button mb-5 is-info" : "button mb-5 is-info is-light"} onClick={() => setNormalView(x => !x)}>Normal View</button>
                         <ImageTileList images={images} request={setMeshCallBack} ></ImageTileList>
                     </div>
                 </div>
@@ -78,8 +81,8 @@ const ResultViewer: NextPage = () => {
 
             <div className="column sticky">
                 <div className="p-3">
-                    <MeshViewerForPhoto title='Dish' meshUrl={dishModel} width={canvasSize} height={canvasSize} />
-                    <MeshViewerForPhoto title='Plate' meshUrl={plateModel} width={canvasSize} height={canvasSize} />
+                    <MeshViewerForPhoto title='Dish' meshUrl={dishModel} width={canvasSize} height={canvasSize} pinToNormalView={isNormalView} />
+                    <MeshViewerForPhoto title='Plate' meshUrl={plateModel} width={canvasSize} height={canvasSize} pinToNormalView={isNormalView} />
                 </div>
             </div>
         </div>

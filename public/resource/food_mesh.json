@@ -6,8 +6,8 @@
     },
     {
         "imageUrl": "http://localhost:3000/resource/food.jpg",
-        "mesh1Url": "http://localhost:3000/resource/food.obj",
-        "mesh2Url": "http://localhost:3000/resource/dish.obj"
+        "mesh1Url": "http://localhost:3000/resource/vertex_color_cube.obj",
+        "mesh2Url": "http://localhost:3000/resource/vertex_color_cube.obj"
     },
     {
         "imageUrl": "http://localhost:3000/resource/food.jpg",
