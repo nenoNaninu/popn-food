@@ -1,34 +1,70 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Pop'n Food
 
-## Getting Started
+Pop'n Food is a web application for visualizing 3D models generated from large numbers of images in a browser. This application was created to streamline my research.
 
-First, run the development server:
+[Full demo video](https://youtu.be/YyIu8bL65EE)
+
+![popn_food_output](https://user-images.githubusercontent.com/27144255/171664740-0530fa47-cb44-4785-8b99-c9d9a118d0dc.gif)
+
+
+## Background
+
+I was researching a method to generate two 3D models from a single image.
+The paper can be found at the following link.
+
+[Hungry Networks](https://dl.acm.org/doi/10.1145/3444685.3446275)
+
+It is necessary to evaluate what 3D shapes are reconstructed qualitatively in such research.
+However, checking a large number of 3D models reconstructed from a large number of images is tedious and requires many steps.
+
+This application frees us from many painful steps and allows us to comfortably see what 3D model was generated from which image.
+This application has two modes.
+
+- A mode to visualize a pre-generated 3D model.
+- A mode to generate and visualize a 3D model in real time from the input image.
+    - This repository does not contain a backend server for generating 3D models from a single image.
+
+## Usage
+
+First, install dependencies.
 
 ```bash
-npm run dev
-# or
+yarn install
+```
+
+Run a development server.
+
+```bash
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Publish static files.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```
+yarn build
+yarn export
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Paper Info
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+[**Hungry Networks**](https://dl.acm.org/doi/10.1145/3444685.3446275)
 
-## Learn More
+```
+@inproceedings{Naritomi2020hungry,
+    Author={Naritomi, S. and Yanai, K.},
+    title={{Hungry Networks}: {3D} Mesh Reconstruction of a Dish and a Plate from a Single Dish Image for Estimating Food Volume},
+    booktitle={Proc. of ACM Multimedia Asia},
+    year={2020}
+}
+```
 
-To learn more about Next.js, take a look at the following resources:
+[**Pop'n Food**](https://ieeexplore.ieee.org/document/9565558)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+@inproceedings{Naritomi2021popn,
+  author={Naritomi, S. and Yanai, K.},
+  booktitle={Proc. of IEEE Conference on Multimedia Information Processing and Retrieval (MIPR)}, 
+  title={{Pop'n Food}: 3D Food Model Estimation System from a Single Image}, 
+  year={2021},
+}
+```
